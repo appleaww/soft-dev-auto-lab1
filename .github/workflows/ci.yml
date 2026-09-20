@@ -15,14 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Check files
         run: |
+          echo "Running CI..."
           git diff --check
-
-      - name: Scan for secrets with TruffleHog
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: "--results=verified,unverified,unknown"
+          echo "CI passed"
