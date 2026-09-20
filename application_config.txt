@@ -1,1 +1,1 @@
-worker-name: "app-base-worker" 
+worker-name: "app-test-worker"
