@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend
+    container_name: simple-backend
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: simple-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
