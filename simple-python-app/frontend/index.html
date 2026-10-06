@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend + Backend</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Простое приложение</h1>
+  <p>Нажми кнопку — frontend отправит запрос в Python backend.</p>
+
+  <button id="requestButton">Отправить запрос</button>
+  <div id="result">Ответ пока не получен</div>
+
+  <script>
+    const button = document.getElementById("requestButton");
+    const result = document.getElementById("result");
+
+    button.addEventListener("click", async () => {
+      result.textContent = "Отправляю запрос...";
+
+      try {
+        const response = await fetch("/api/hello");
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        result.textContent = data.message;
+      } catch (error) {
+        result.textContent = `Ошибка: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
