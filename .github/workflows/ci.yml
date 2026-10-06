@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+
   push:
     branches:
       - master
@@ -21,3 +22,25 @@ jobs:
           echo "Running CI..."
           git diff --check
           echo "CI passed"
+
+      - name: Build Docker Compose images
+        working-directory: ./simple-python-app
+        run: docker compose build
+
+      - name: Scan backend image with Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: simple-python-backend:latest
+          scan-type: image
+          format: table
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+
+      - name: Scan frontend image with Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: simple-python-frontend:latest
+          scan-type: image
+          format: table
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
