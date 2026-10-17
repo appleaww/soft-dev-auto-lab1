@@ -1,0 +1,19 @@
+rules:
+  - id: lab.cpp.cwe120-unbounded-strcpy
+    languages: [cpp]
+    message: "CWE-120: unbounded strcpy into a fixed-size buffer; use std::string."
+    severity: ERROR
+    metadata:
+      cwe: CWE-120
+    pattern-either:
+      - pattern: std::strcpy($DST, $SRC);
+      - pattern: strcpy($DST, $SRC);
+
+  - id: lab.cpp.cwe22-output-traversal
+    languages: [cpp]
+    message: "CWE-22: user-controlled output filename joined to output/ without validation."
+    severity: ERROR
+    metadata:
+      cwe: CWE-22
+    # Educational targeted rule; not a general-purpose taint analysis.
+    pattern-regex: 'fs::path\("output"\)\s*/\s*output_file'

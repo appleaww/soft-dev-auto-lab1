@@ -1,0 +1,47 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "bom-ref": "lab-archiver-vulnerable",
+      "name": "security_archiver",
+      "version": "1.0-vulnerable"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/zlib@1.2.11",
+      "name": "zlib",
+      "version": "1.2.11",
+      "purl": "pkg:generic/zlib@1.2.11",
+      "cpe": "cpe:2.3:a:zlib:zlib:1.2.11:*:*:*:*:*:*:*",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://zlib.net/fossils/zlib-1.2.11.tar.gz"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "lab-archiver-vulnerable",
+      "dependsOn": [
+        "pkg:generic/zlib@1.2.11"
+      ]
+    },
+    {
+      "ref": "pkg:generic/zlib@1.2.11",
+      "dependsOn": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+This is an educational C++17 archiver for SAST and SCA checks.
+The program reads from a file or standard input, compresses data and writes it out.
